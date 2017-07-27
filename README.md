@@ -1,6 +1,10 @@
 # swimming-in-exlixir
 Elixir basics presentation materials from AIC 2017
 
+This repo is also accessible from:
+* https://tinyurl.com/AIC2017Elixir
+* https://tinyurl.com/swimminginelixir
+* https://goo.gl/rkFg3P
 
 ## pick-the-icon
 A simple sample website used in the presentation as an example of a site
