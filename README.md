@@ -7,7 +7,7 @@ This repo is also accessible from:
 * https://tinyurl.com/swimminginelixir
 * https://goo.gl/rkFg3P
 
-# presentation
+## presentation
 Created for AIC 2017 Internal Conference by [WWT Asynchrony
 Labs](http://www.asynchrony.com/).
 
