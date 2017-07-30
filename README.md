@@ -1,5 +1,6 @@
 # swimming-in-exlixir
-Elixir basics presentation materials from AIC 2017
+Elixir basics presentation materials from Asynchrony-Internal-Conference
+(AIC) 2017
 
 This repo is also accessible from:
 * https://tinyurl.com/AIC2017Elixir
@@ -7,7 +8,8 @@ This repo is also accessible from:
 * https://goo.gl/rkFg3P
 
 # presentation
-Created for AIC 2017 Internal Conference by WWT Asynchrony Labs.
+Created for AIC 2017 Internal Conference by [WWT Asynchrony
+Labs](http://www.asynchrony.com/).
 
 Static presentation materials found under /presentation folder using
 reveal.js to be web acessible.  Presentation meterials are design to be
