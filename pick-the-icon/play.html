@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="pick-the-icon example site for use with presentation">
+    <meta name="author" content="Benjamin P Lee">
+    <link rel="icon" type="image/png" href="img/favicon.png">
+    <title>Pick the Icon</title>
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link href="css/index.css" rel="stylesheet">
+  </head>
+
+  <body>
+
+    <div class="site-wrapper">
+
+      <div class="site-wrapper-inner">
+
+        <div class="cover-container">
+
+          <div class="masthead clearfix">
+            <div class="inner">
+              <h3 class="masthead-brand">Pick the Icon</h3>
+              <nav>
+                <ul class="nav masthead-nav">
+                  <li><a href="index.html">Home</a></li>
+                  <li class="active"><a href="#">Play</a></li>
+                  <li><a href="leaders.html">Leaders</a></li>
+                </ul>
+              </nav>
+            </div>
+          </div>
+
+          <div class="inner cover">
+
+            <span id="nameEntryArea">
+              <form class="form-inline">
+                <div class="form-group">
+                  <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
+                  <div class="input-group">
+                    <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                    <input type="text" class="form-control" id="nameInput" placeholder="Name">
+                  </div>
+                </div>
+                <button id="startButton" type="button" class="btn btn-primary">Start!</button>
+              </form>
+
+              <p>
+              <br />
+              Type your name and press "Start!".  You will be shown 2 icons and a name.  Touch the icon
+              that you think is the same as the name.  You get 1 point for each right answer.  The game continues
+              as long as you get them right.  Check the "Leaders" board to see how you are doing compared
+              to your peers.
+              </p>
+            </span>
+
+            <span id="gameArea" style="display:none;">
+              <h2>Go <span id="nameField">BEN</span>!</h2>
+
+              
+
+
+            </span>
+          </div>
+
+          <div class="mastfoot">
+            <div class="inner">
+              <p>Example app for Swimming in Elixir Presentation by <a href="https://github.com/benjaminplee/swimming-in-exlixir">Benjamin P Lee</a>.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script>
+$(function() {
+  $("#startButton").click(function() {
+    $("#nameField").text($("#nameInput").val());
+    $("#nameEntryArea").hide();
+    $("#gameArea").show();
+  });
+});
+    </script>
+  </body>
+</html>
