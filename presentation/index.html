@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="css/theme/moon.css">
 
 		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/zenburn.css">
+		<link rel="stylesheet" href="lib/css/railscasts.css">
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -47,91 +47,140 @@
               Lay out the arc of the talk
             </aside>
           </section>
-          <section data-background-color="#592C23"><h2>Warm Up Lap</h2></section>
-          <section data-background-color="#7D4E57"><h2>The Problem</h2></section>
-          <section data-background-color="#53395A"><h2>Meet Whoppex</h2></section>
-          <section data-background-color="#0E2617"><h2>Do It Live!</h2></section>
+          <section data-background-color="#592C23"><h1>A Quick Splash</h1><h3>Elixir at a high level</h3></section>
+          <section data-background-color="#7D4E57"><h1>The Kiddle Pool</h1><h3>Foundations and Basics</h3></section>
+          <section data-background-color="#53395A"><h1>Lap Swim</h1><h3>Meet Whoppex</h3></section>
         </section>
         <!--
 				<section>
-        
           <aside class="notes">
           </aside>
         </section>
         -->
 				<section data-background-color="#592C23">
-          <h1>Warm Up Lap</h1>
+          <section><h1>A Quick Splash</h1><h3>Elixir at a high level</h3></section>
+          <section>
+            <h3>Hello World</h3>
+            <pre><code class="elixir" data-trim data-noescape>
+do(something) | here(with) | code
+
+talk to history and motivation of Elixir (more productive high concurrency)
+
+Jose Valim
+
+influenced by Ruby
+
+Built on Erlang - telcom, high availability, concurrency
+            </code></pre>
+          </section>
+          <section>
+            <h3>Noteworthy</h3>
+            <pre><code class="elixir" data-trim data-noescape>
+fast cheap creation of concurrent processes
+
+names mean something new
+
+some clever code example - e.g. pattern matching
+            </code></pre>
+          </section>
+          <section>
+            <h3>Improving Erlang</h3>
+            <pre><code class="elixir" data-trim data-noescape>
+problems we saw on Mako and Sensi
+
+ugly Erlang code - line terminators, explicit export
+
+side by side?
+            </code></pre>
+          </section>
+          <section>
+            <h3>Who is Using It?</h3>
+            <ul>
+              <li>Phoenix - Web Framework</li>
+              <li>Discord - distributed text and video chat</li>
+              <li>Pinterest</li>
+              <li>Nerves - IoT - Run Elixir on a RaspberryPi</li>
+              <li>Erlang projects - RabbitMQ, ejabberd, CouchDB</li>
+            </ul>
+          </section>
+          <section>
+            <h3>Moving Forward</h3>
+            <ul>
+              <li>Active Community <small><em>Almost 5k Hex Packages</em></small></li>
+              <li>~5 years old <small><em>get in on the ground floor!</em></small></li>
+              <li>Lots of learning resources</li>
+            </ul>
+          </section>
         </section>
-				<section data-background-color="#592C23">
-          <ul>
-            <li>Elixir as an improved language/tools working on the Erlang VM; brief demo, compare to Erlang</li>
-            <li>Step back and talk about Erlang VM, hot-code upload and uptime, concurrency, fault tollerance, telcom background, cross platform</li>
-            <li>Actor model, functional, no-shared state, immutability, dynamic</li>
-            <li>OTP, releases, supervision</li>
-            <li>Elixir samples (code, mix commands, etc)</li>
-          </ul>
-        </section>
+
+
 				<section data-background-color="#7D4E57">
-          <h1>The Problem</h1>
+          <section><h1>The Kiddle Pool</h1><h3>Foundations and Basics</h3></section>
+
+
+
+
+
         </section>
-				<section data-background-color="#7D4E57">
-          <ul>
-            <li>IoT R&amp;D team - Phase 2 - Take Trucks To The Cloud!</li>
-            <li>Scale and performance testing is hard (varying realism, some problems only visible in exact scenarios, distributed state, network nuances and counterintuitive issues</li>
-            <li>
+
+				<section data-background-color="#56380B">
+          <section>
+            <h1>
+              Time For a Quick Detour<br />
+              <i class="fa fa-map-signs" aria-hidden="true"></i>
+            </h1>
+          </section>
+          <section>
+            <h2>I need your help</h2>
+            <p>Please take out your phone/phablet/tablet<br />and go to the link below</p>
+            <h2><a href="http://tinyurl.com/picktheicon">http://tinyurl.com/picktheicon</a></h2>
+          </section>
+          <section>
+            <h2><a href="http://tinyurl.com/picktheicon">http://tinyurl.com/picktheicon</a></h2>
+            <p>Please play around on the site for 90 seconds...</p>
+          </section>
+          <section>
+            <h2>What did we see?</h2>
+            <p>TODO lay out WHY (concurrent without shared state or orchestration) they just did it and the kinds of web requests/flow the app suggests</p>
+          </section>
+        </section>
+
+
+				<section data-background-color="#53395A">
+          <section><h1>Lap Swim</h1><h3>Meet Whoppex</h3></section>
+
+          <section>
+            <h1>The Problem</h1>
+            <h3><em>Scaling is <strong>hard</strong></em></h3>
+          </section>
+          <section>
+            <ul>
+              <li>IoT R&amp;D team - Phase 2 - Take Trucks To The Cloud!</li>
+              <li>Scale and performance testing is hard (varying realism, some problems only visible in exact scenarios, distributed state, network nuances and counterintuitive issues</li>
+              <li>
               Other tools left me wanting (custom protocols, flexability, cost, ease of use, high concurrency with agent-independence, on-prem)
               <ul>
                 <li><a href="http://jmeter.apache.org/">JMeter</a></li>
                 <li><a href="http://tsung.erlang-projects.org/">Tsung</a></li>
                 <li><a href="http://gatling.io/">Gatling</a></li>
               </ul>
-            </li>
-            <li>On Sensi, we did this in Erlang</li>
-            <li>Know of something better?  Tell me after!</li>
-          </ul>
-        </section>
-				<section data-background-color="#56380B">
-          <section data-background-color="#56380B">
-            <h1>
-              Time For a Quick Detour<br />
-              <i class="fa fa-map-signs" aria-hidden="true"></i>
-            </h1>
-          </section>
-          <section data-background-color="#56380B">
-            <h2>I need your help</h2>
-            <p>Please take out your phone/phablet/tablet<br />and go to the link below</p>
-            <h2><a href="http://tinyurl.com/picktheicon">http://tinyurl.com/picktheicon</a></h2>
-          </section>
-          <section data-background-color="#56380B">
-            <h2><a href="http://tinyurl.com/picktheicon">http://tinyurl.com/picktheicon</a></h2>
-            <p>Please play around on the site for 90 seconds...</p>
+              </li>
+              <li>On Sensi, we did this in Erlang</li>
+              <li>Know of something better?  Tell me after!</li>
+            </ul>
           </section>
         </section>
-				<section data-background-color="#53395A">
-          <h1>Meet Whoppex</h1>
-        </section>
-				<section data-background-color="#53395A">
-          <ul>
-            <li></li>
-          </ul>
-        </section>
-				<section data-background-color="#0E2617">
-          <h1>Do It Live!</h1>
-        </section>
-				<section data-background-color="#0E2617">
-          <ul>
-            <li></li>
-          </ul>
+
+        <section>
+					<h1>Out of the pool!</h1>
+          <p>Does everyone have <em>pruney</em> fingers?</p>
         </section>
         <section>
-					<h1>Wrap Up...</h1>
+					<h1>Next Steps...</h1>
+          <p>TODO Where to find this presentation, Whoppex, other good materials, etc</p>
         </section>
         <section>
-					<h1>Resources</h1>
-          <p>Where to find this presentation, Whoppex, other good materials, etc</p>
-        </section>
-        <section>
-					<h1>Thank You</h1>
+					<h1>Thank You!</h1>
 					<ul>
 						<li>Joe Depung</li>
 						<li>Adam Ritzel</li>
@@ -140,6 +189,24 @@
             <li><a href="https://thenounproject.com/search/?q=swim&i=581672">Swimming</a> by IconDots from the Noun Project</li>
             <li>Viewers like you</li>
 					</ul>
+        </section>
+        <section>
+					<h1>Questions?</h1>
+        </section>
+        <section>
+          <h1><em>fin</em></h1>
+        </section>
+        <section>
+          <h1>Misc</h1>
+        </section>
+				<section>
+          <ul>
+            <li>Elixir as an improved language/tools working on the Erlang VM; brief demo, compare to Erlang</li>
+            <li>Step back and talk about Erlang VM, hot-code upload and uptime, concurrency, fault tollerance, telcom background, cross platform</li>
+            <li>Actor model, functional, no-shared state, immutability, dynamic</li>
+            <li>OTP, releases, supervision</li>
+            <li>Elixir samples (code, mix commands, etc)</li>
+          </ul>
         </section>
 			</div>
 		</div>
