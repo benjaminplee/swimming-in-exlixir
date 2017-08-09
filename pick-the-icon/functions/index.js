@@ -33,6 +33,8 @@ exports.getScores = functions.https.onRequest((req, res) => {
             allScores.push(childData);
         });
 
+        allScores = _.sortBy(allScores, score => -1.0 * score.score);
+
         res.status(200).send(allScores);
     });
 });
