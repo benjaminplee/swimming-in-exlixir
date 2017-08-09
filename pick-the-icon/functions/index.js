@@ -1,8 +1,276 @@
+// The Cloud Functions for Firebase SDK to create Cloud Functions and setup triggers.
 const functions = require('firebase-functions');
+const _ = require('underscore');
 
-// // Create and Deploy Your First Cloud Functions
-// // https://firebase.google.com/docs/functions/write-firebase-functions
-//
-// exports.helloWorld = functions.https.onRequest((request, response) => {
-//  response.send("Hello from Firebase!");
-// });
+// The Firebase Admin SDK to access the Firebase Realtime Database. 
+const admin = require('firebase-admin');
+admin.initializeApp(functions.config().firebase);
+
+// Take the text parameter passed to this HTTP endpoint and insert it into the
+// Realtime Database under the path /scores/:pushId/score
+exports.saveScore = functions.https.onRequest((req, res) => {
+    // Grab the parameters.
+    const username = req.query.username;
+    const score = req.query.score;
+
+    var data = {
+        username: username,
+        score: score
+    };
+
+    // Push the new message into the Realtime Database using the Firebase Admin SDK.
+    admin.database().ref('/scores').push(data).then(snapshot => {
+      res.status(201).send(data);
+    });
+  });
+  
+exports.getScores = functions.https.onRequest((req, res) => {
+    admin.database().ref('/scores').once('value', snapshot => {
+        var allScores = [];
+
+        snapshot.forEach(function(childSnapshot) {
+            var childData = childSnapshot.val();
+            allScores.push(childData);
+        });
+
+        res.status(200).send(allScores);
+    });
+});
+
+exports.getRandIcons = functions.https.onRequest((req, res) => {
+    const count = 3;
+
+    // Get a random starting location
+    var startingIndex = Math.floor(Math.random() * (iconList.length - count));
+
+    res.status(200).send(iconList.slice(startingIndex, startingIndex + 3));
+});
+
+const iconList = [
+    "adjust",
+    "alert",
+    "align",
+    "alphabet",
+    "alt",
+    "apple",
+    "arrow",
+    "asterisk",
+    "attributes",
+    "baby",
+    "background",
+    "backward",
+    "ban",
+    "bank",
+    "barcode",
+    "bed",
+    "bell",
+    "bishop",
+    "bitcoin",
+    "blackboard",
+    "bold",
+    "book",
+    "bookmark",
+    "bottom",
+    "briefcase",
+    "btc",
+    "bullhorn",
+    "by",
+    "calendar",
+    "camera",
+    "card",
+    "cart",
+    "cd",
+    "center",
+    "certificate",
+    "check",
+    "chevron",
+    "circle",
+    "close",
+    "cloud",
+    "cog",
+    "collapse",
+    "color",
+    "comment",
+    "compressed",
+    "conifer",
+    "console",
+    "copy",
+    "copyright",
+    "credit",
+    "cutlery",
+    "dashboard",
+    "deciduous",
+    "disk",
+    "dolby",
+    "down",
+    "download",
+    "duplicate",
+    "earphone",
+    "edit",
+    "education",
+    "eject",
+    "empty",
+    "envelope",
+    "equalizer",
+    "erase",
+    "eur",
+    "euro",
+    "exclamation",
+    "expand",
+    "export",
+    "eye",
+    "facetime",
+    "fast",
+    "file",
+    "film",
+    "filter",
+    "fire",
+    "flag",
+    "flash",
+    "floppy",
+    "folder",
+    "font",
+    "formula",
+    "forward",
+    "full",
+    "fullscreen",
+    "gbp",
+    "gift",
+    "glass",
+    "globe",
+    "grain",
+    "hamburger",
+    "hand",
+    "hd",
+    "hdd",
+    "header",
+    "headphones",
+    "heart",
+    "height",
+    "home",
+    "horizontal",
+    "hourglass",
+    "ice",
+    "import",
+    "in",
+    "inbox",
+    "indent",
+    "info",
+    "italic",
+    "jpy",
+    "justify",
+    "king",
+    "knight",
+    "lamp",
+    "large",
+    "leaf",
+    "left",
+    "level",
+    "link",
+    "list",
+    "lock",
+    "log",
+    "lolly",
+    "magnet",
+    "map",
+    "mark",
+    "marker",
+    "menu",
+    "minus",
+    "modal",
+    "move",
+    "music",
+    "new",
+    "object",
+    "off",
+    "oil",
+    "ok",
+    "open",
+    "option",
+    "order",
+    "out",
+    "paperclip",
+    "paste",
+    "pause",
+    "pawn",
+    "pencil",
+    "phone",
+    "picture",
+    "piggy",
+    "plane",
+    "play",
+    "plus",
+    "print",
+    "pushpin",
+    "qrcode",
+    "queen",
+    "question",
+    "random",
+    "record",
+    "refresh",
+    "registration",
+    "remove",
+    "repeat",
+    "resize",
+    "retweet",
+    "right",
+    "road",
+    "rub",
+    "ruble",
+    "save",
+    "saved",
+    "scale",
+    "scissors",
+    "screenshot",
+    "sd",
+    "search",
+    "send",
+    "share",
+    "shopping",
+    "sign",
+    "signal",
+    "size",
+    "small",
+    "sort",
+    "sound",
+    "star",
+    "stats",
+    "step",
+    "stereo",
+    "stop",
+    "subscript",
+    "subtitles",
+    "sunglasses",
+    "superscript",
+    "tag",
+    "tags",
+    "tasks",
+    "tasted",
+    "tent",
+    "text",
+    "th",
+    "thumbs",
+    "time",
+    "tint",
+    "top",
+    "tower",
+    "transfer",
+    "trash",
+    "tree",
+    "triangle",
+    "unchecked",
+    "up",
+    "upload",
+    "usd",
+    "user",
+    "vertical",
+    "video",
+    "volume",
+    "warning",
+    "width",
+    "window",
+    "wrench",
+    "xbt",
+    "yen",
+    "zoom"
+];    
