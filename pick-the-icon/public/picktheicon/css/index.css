@@ -10,9 +10,9 @@ a:hover {
 }
 
 /* Custom default button */
-.btn-default,
-.btn-default:hover,
-.btn-default:focus {
+.play-btn.btn-default,
+.play-btn.btn-default:hover,
+.play-btn.btn-default:focus {
   color: #333;
   text-shadow: none; /* Prevent inheritance from `body` */
   background-color: #fff;
@@ -162,3 +162,21 @@ body {
     width: 700px;
   }
 }
+
+/*
+ * Icons
+ */
+
+ .icon-btn {
+   font-size: 4rem;
+   margin: 0 20px;
+ }
+
+ .icon-btn:hover {
+   color: lightslategrey;
+ }
+
+ .refresh-btn {
+   font-size: 18px;
+   padding-left: 15px;
+ }

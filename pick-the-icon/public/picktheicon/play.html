@@ -16,7 +16,7 @@
 
   <body>
 
-    <div class="site-wrapper">
+    <div id="app" class="site-wrapper">
 
       <div class="site-wrapper-inner">
 
@@ -38,20 +38,20 @@
           <div class="inner cover">
 
             <span id="nameEntryArea">
-              <form class="form-inline">
+              <form class="form-inline" v-on:submit.prevent>
                 <div class="form-group">
                   <label class="sr-only" for="exampleInputAmount">Amount (in dollars)</label>
                   <div class="input-group">
                     <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
-                    <input type="text" class="form-control" id="nameInput" placeholder="Name">
+                    <input type="text" class="form-control" id="nameInput" placeholder="Name" v-model="username">
                   </div>
                 </div>
-                <button id="startButton" type="button" class="btn btn-primary">Start!</button>
+                <button type="button" class="btn btn-primary" v-on:click="userEntered">Start!</button>
               </form>
 
               <p>
               <br />
-              Type your name and press "Start!".  You will be shown 2 icons and a name.  Touch the icon
+              Type your name and press "Start!".  You will be shown 3 icons and a name.  Touch the icon
               that you think is the same as the name.  You get 1 point for each right answer.  The game continues
               as long as you get them right.  Check the "Leaders" board to see how you are doing compared
               to your peers.
@@ -59,9 +59,22 @@
             </span>
 
             <span id="gameArea" style="display:none;">
-              <h2>Go <span id="nameField"></span>!</h2>
+              <h2>
+                <span>Hi {{username}}!</span>
+                <a class="refresh-btn" href="#">
+                  <span class="glyphicon glyphicon-refresh" v-on:click="chooseIcons"></span>
+                </a>
+              </h2>
 
-              <span class="glyphicon glyphicon-refresh"></span>
+              <p>Which one is {{correctAnswer}}?</p>
+
+              <ul class="list-inline">
+                <li v-for="icon in icons">
+                    <a class="icon-btn" href="#" v-on:click="logChoice(icon)">
+                      <span class="glyphicon" v-bind:class="'glyphicon-' + icon"></span>
+                    </a>
+                </li>
+              </ul>
             </span>
           </div>
 
@@ -79,21 +92,7 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-    <script>
-function loadQuestion() {
-  
-}
-
-$(function() {
-  $("#startButton").click(function() {
-    $("#nameField").text($("#nameInput").val());
-    $("#nameEntryArea").hide();
-    $("#gameArea").show();
-
-    loadQuestion();
-  });
-});
-    </script>
+    <script src="https://unpkg.com/vue"></script>
+    <script src="play.js"></script>
   </body>
 </html>
