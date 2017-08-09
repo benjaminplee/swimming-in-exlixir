@@ -1,11 +1,14 @@
 (function() {
+    var isLocal = false;
+
     var app = new Vue({
         el: '#app',
         data: {
             username: '',
             message: 'Hello Vue!',
             correctAnswer: '',
-            icons: []
+            icons: [],
+            cumulativeScore: 0
         },
         created: function () {
             this.chooseIcons();
@@ -14,16 +17,45 @@
             chooseIcons: function() {
                 console.log("Choosing new icons");
                 var _this = this;
-                var iconUrl = "https://us-central1-swimming-in-elixir.cloudfunctions.net/getRandIcons";
-                $.getJSON(iconUrl, function(icons) {
-                    _this.icons = icons;
+                if (isLocal) {
+                    _this.icons = ["off", "oil", "ok",];
                     _this.correctAnswer = _this.icons[Math.floor(Math.random() * 3)];
-                });
-                // _this.icons = ["off", "oil", "ok",];
-                // _this.correctAnswer = _this.icons[Math.floor(Math.random() * 3)];
+                } else {
+                    var iconUrl = "/getRandIcons";
+
+                    $.getJSON(iconUrl, function(icons) {
+                        _this.icons = icons;
+                        _this.correctAnswer = _this.icons[Math.floor(Math.random() * 3)];
+                    });
+                }
             },
             logChoice: function(choice) {
                 console.log("Chose ", choice);
+
+                if (this.correctAnswer === choice) {
+                    console.log("You chose correctly!");
+                    this.cumulativeScore++;
+                    this.chooseIcons();
+                }
+                else {
+                    console.log("You chose poorly!");
+                    this.postFinalScore();
+                }
+            },
+            postFinalScore: function() {
+                var iconUrl = "/saveScore";
+                iconUrl += "?username=" + this.username;
+                iconUrl += "&score=" + this.cumulativeScore;
+
+                if (!isLocal) {
+                    $.post(iconUrl).done(function() {
+                        $("#questionArea").hide();
+                        $("#gameOver").show();
+                    });
+                } else {
+                    $("#questionArea").hide();
+                    $("#gameOver").show();
+                }
             },
             userEntered: function() {
                 console.log("User: ", this.username);
