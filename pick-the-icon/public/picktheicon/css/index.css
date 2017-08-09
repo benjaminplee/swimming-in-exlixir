@@ -10,9 +10,9 @@ a:hover {
 }
 
 /* Custom default button */
-.btn-default,
-.btn-default:hover,
-.btn-default:focus {
+.play-btn.btn-default,
+.play-btn.btn-default:hover,
+.play-btn.btn-default:focus {
   color: #333;
   text-shadow: none; /* Prevent inheritance from `body` */
   background-color: #fff;
@@ -161,4 +161,37 @@ body {
   .cover-container {
     width: 700px;
   }
+}
+
+/*
+ * Icons
+ */
+
+ .icon-btn {
+   font-size: 4rem;
+   margin: 0 20px;
+ }
+
+ .icon-btn:hover {
+   color: lightslategrey;
+ }
+
+ .refresh-btn {
+   font-size: 18px;
+   padding-left: 15px;
+ }
+
+.glyphicon.spinning {
+  animation: spin 1s infinite linear;
+  -webkit-animation: spin2 1s infinite linear;
+}
+
+@keyframes spin {
+  from { transform: scale(1) rotate(0deg); }
+  to { transform: scale(1) rotate(360deg); }
+}
+
+@-webkit-keyframes spin2 {
+  from { -webkit-transform: rotate(0deg); }
+  to { -webkit-transform: rotate(360deg); }
 }
