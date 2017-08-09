@@ -216,7 +216,7 @@ foo(X, Y) ->
 
           <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
             <h2 class="fragment fade-out">The Basics</h2>
-            <h1>REPLACE THIS VIDEO</h1>
+            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
             <aside class="notes" data-markdown>
               * Basic Data Types - numbers, lists, tuples, strings, binaries, maps
               * Functions - first class, always return (no methods)
@@ -227,6 +227,7 @@ foo(X, Y) ->
 
           <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
             <h2 class="fragment fade-out">MASSIVE CONCURRENCY</h1>
+            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
             <h1>REPLACE THIS VIDEO</h1>
             <aside class="notes" data-markdown>
               * spawn with fun
@@ -239,6 +240,7 @@ foo(X, Y) ->
 
           <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
             <h2 class="fragment fade-out">Building All The Things</h1>
+            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
             <h1>REPLACE THIS VIDEO</h1>
             <aside class="notes" data-markdown>
               * applications
@@ -257,22 +259,31 @@ foo(X, Y) ->
           <section>
             <h1>The Problem</h1>
             <h3><em>Scaling is <strong>hard</strong></em></h3>
+            <aside class="notes" data-markdown>
+              * Scale misses and wins on many projects
+              * IoT R&amp;D team - Truck Edge demo TO THE CLOUD!
+              * Want multi protocol, dev/code first, easy to understand plans
+              * Other tools left me wanting
+              * * JMeter
+              * * TSung
+              * * Gatling
+              * Built home grown and used for success on past proj
+              * Disagree?  Tell me after!
+            </aside>
           </section>
-          <section>
-            <ul>
-              <li>IoT R&amp;D team - Phase 2 - Take Trucks To The Cloud!</li>
-              <li>Scale and performance testing is hard (varying realism, some problems only visible in exact scenarios, distributed state, network nuances and counterintuitive issues</li>
-              <li>
-              Other tools left me wanting (custom protocols, flexability, cost, ease of use, high concurrency with agent-independence, on-prem)
-              <ul>
-                <li><a href="http://jmeter.apache.org/">JMeter</a></li>
-                <li><a href="http://tsung.erlang-projects.org/">Tsung</a></li>
-                <li><a href="http://gatling.io/">Gatling</a></li>
-              </ul>
-              </li>
-              <li>On Sensi, we did this in Erlang</li>
-              <li>Know of something better?  Tell me after!</li>
-            </ul>
+
+          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+            <h1 class="fragment fade-out">Solution?</h1>
+            <h3 class="fragment fade-out"><em><strong>Whoppex</strong></em></h3>
+            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
+            <aside class="notes" data-markdown>
+              * Success on past proj with home grown and Erlang
+              * Rewrite core in Elixir
+              * Users should only need to contribute their "agent" definition
+              * Agents have a plan and are managed by the library
+              * Common convience methods (pause, loop, etc)
+              * Published hex package
+            </aside>
           </section>
         </section>
 
@@ -301,7 +312,6 @@ foo(X, Y) ->
           </section>
           <section>
             <h2>How could we load test this?</h2>
-            <p>TODO lay out WHY (concurrent without shared state or orchestration) they just did it and the kinds of web requests/flow the app suggests</p>
             <aside class="notes" data-markdown>
               * Real concurrent users don't have shared state or orchestration
               * Simple AJAX flow and some static files
@@ -318,7 +328,10 @@ foo(X, Y) ->
               <li>Launch and see</li>
             </ul>
           </section>
-          <!-- <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black"></section> -->
+          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+            <h2 class="fragment fade-out">Walkthrough</h2>
+            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
+          </section>
         </section>
 
         <section>
@@ -337,8 +350,7 @@ foo(X, Y) ->
         <section>
 					<h1>Thank You!</h1>
 					<ul>
-						<li>Joe Depung</li>
-						<li>Adam Ritzel</li>
+						<li>Joe Depung &amp; Adam Ritzel</li>
 						<li>Joe Barzai</li>
 						<li>Denver WWT IoT R&amp;D team</li>
             <li><a href="http://lab.hakim.se/reveal-js/">reveal.js</a> presentation framework</li>
@@ -356,24 +368,6 @@ foo(X, Y) ->
         </section>
         <section>
           <h1><em>fin</em></h1>
-        </section>
-        <section>
-          <section>
-            <h1>Misc</h1>
-          </section>
-          <section>
-            <ul>
-              <li>Elixir as an improved language/tools working on the Erlang VM; brief demo, compare to Erlang</li>
-              <li>Step back and talk about Erlang VM, hot-code upload and uptime, concurrency, fault tollerance, telcom background, cross platform</li>
-              <li>Actor model, functional, no-shared state, immutability, dynamic</li>
-              <li>OTP, releases, supervision</li>
-              <li>Elixir samples (code, mix commands, etc)</li>
-            </ul>
-            <!--
-            <aside class="notes">
-            </aside>
-            -->
-          </section>
         </section>
 			</div>
 		</div>
