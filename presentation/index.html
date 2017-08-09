@@ -10,7 +10,7 @@
 
     <link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/blood.css"> <!-- presentation theme -->
-    <link rel="stylesheet" href="lib/css/railscasts.css"> <!-- code highlighting -->
+    <link rel="stylesheet" href="lib/css/ir-black.css"> <!-- code highlighting -->
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -48,7 +48,7 @@
             </aside>
           </section>
           <section data-background-color="#592C23"><h1>A Quick Splash</h1><h3>Elixir at a high level</h3></section>
-          <section data-background-color="#7D4E57"><h1>The Kiddie Pool</h1><h3>Foundations and Basics</h3></section>
+          <section data-background-color="#7D4E57"><h1>The Kiddy Pool</h1><h3>Foundations and Basics</h3></section>
           <section data-background-color="#53395A"><h1>Lap Swim</h1><h3>Meet Whoppex</h3></section>
         </section>
 				<section data-background-color="#592C23">
@@ -56,7 +56,7 @@
           <!-- <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black"></section> -->
           <section>
             <h3>Hello Elixir</h3>
-            <pre><code class="elixir" data-trim data-noescape>
+            <pre class="stretch"><code class="elixir" data-trim data-noescape>
 iex(1)> IO.puts "Hello Elixir"
 Hello Elixir
 :ok
@@ -92,7 +92,7 @@ iex(7)> tail
           </section>
           <section>
             <h3>Noteworthy</h3>
-            <pre><code class="elixir" data-trim data-noescape>
+            <pre class="stretch"><code class="elixir" data-trim data-noescape>
 iex(1)> spawn fn -> IO.puts "I ... AM ... ALIVE!" end
 I ... AM ... ALIVE!
 #PID<0.83.0>
@@ -148,19 +148,21 @@ foo(X, Y) ->
           </section>
           <section>
             <h3>Who is Using It?</h3>
-            TODO notes on press releases on Elixir usage and scaling
             <ul>
-              <li>Phoenix - Web Framework</li>
-              <li>Discord - distributed text and video chat</li>
-              <li>Pinterest</li>
-              <li>Nerves - IoT - Run Elixir on a RaspberryPi</li>
-              <li>Erlang projects - RabbitMQ, ejabberd, CouchDB</li>
+              <li><span class="fragment highlight-blue">Phoenix</span> - Web Framework</li>
+              <li><span class="fragment highlight-red">Discord</span> - distributed text and video chat</li>
+              <li><span class="fragment highlight-green">Nerves</span> - IoT - Run Elixir on a RaspberryPi</li>
+              <li><span class="fragment highlight-blue">Erlang projects</span> - RabbitMQ, ejabberd, CouchDB</li>
             </ul>
+            <aside class="notes" data-markdown>
+              * 2 million websocket connections to Phoenix
+              * Discord claims to handle more than 1mil/min bursts and 5mil users
+            </aside>
           </section>
           <section>
             <h3>Where Things Stand</h3>
             <ul>
-              <li>Elixir 1.5 release recently</li>
+              <li>Elixir 1.5 released 1 week ago</li>
               <li>Active Community <small><em>Almost 5k Hex Packages</em></small></li>
               <li>~5 years old <small><em>get in on the ground floor!</em></small></li>
               <li>Lots of learning resources</li>
@@ -171,16 +173,17 @@ foo(X, Y) ->
 
 
 				<section data-background-color="#7D4E57">
-          <section><h1>The Kiddie Pool</h1><h3>Foundations and Basics</h3></section>
+          <section><h1>The Kiddy Pool</h1><h3>Foundations and Basics</h3></section>
 
           <section>
             <h1>Erlang</h1>
             <h3>What is the big deal?!</h3>
 
             <aside class="notes" data-markdown>
+              * To understand Elixir, you need to understand Erlang
               * Created by Swedish Telcom co Erikson in 1986
               * Goals: high concurrency, fault tollerance, and scalability
-              * Language and a RunTime
+              * Language *and* RunTime
               * Functional and Dynamic with a Prolog inspiration
               * Ugly and spikey
               * Used @ ASY on 2 projects
