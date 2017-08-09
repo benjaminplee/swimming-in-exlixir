@@ -4,7 +4,8 @@
     var app = new Vue({
         el: '#leaderboard',
         data: {
-            scores: []
+            scores: [],
+            loading: false
         },
         created: function() {
             console.log("Created");
@@ -15,11 +16,13 @@
             refreshScores: function() {
                 var _this = this;
                 var scoresUrl = "/getScores";
-                
+                _this.loading = true;
+
                 if (!isLocal) {
                     $.getJSON(scoresUrl, function(scores) {
                         console.log(scores);
                         _this.scores = scores;
+                        _this.loading = false;
                     });
                 }
                 else {

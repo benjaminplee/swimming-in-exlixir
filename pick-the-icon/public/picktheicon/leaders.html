@@ -36,10 +36,11 @@
           </div>
 
           <div class="inner cover">
+            <span class="glyphicon glyphicon-refresh spinning pull-left" v-if="loading"></span>
             <h1 class="cover-heading"><img src="img/pick-white.svg" /></h1>
             <p class="lead">Do you know your icons?<br />Press "Play" to begin!</p>
             <p class="lead">
-              <a href="#" class="btn btn-lg btn-default">Play</a>
+              <a href="play.html" class="btn btn-lg btn-default">Play</a>
               <a href="#" class="btn btn-lg btn-default" v-on:click="refreshScores">Refresh Scores</a>
             </p>
 

@@ -8,7 +8,8 @@
             message: 'Hello Vue!',
             correctAnswer: '',
             icons: [],
-            cumulativeScore: 0
+            cumulativeScore: 0,
+            loading: false
         },
         created: function () {
             this.chooseIcons();
@@ -23,9 +24,11 @@
                 } else {
                     var iconUrl = "/getRandIcons";
 
+                    _this.loading = true;
                     $.getJSON(iconUrl, function(icons) {
                         _this.icons = icons;
                         _this.correctAnswer = _this.icons[Math.floor(Math.random() * 3)];
+                        _this.loading = false;
                     });
                 }
             },
@@ -39,22 +42,23 @@
                 }
                 else {
                     console.log("You chose poorly!");
+                    $("#questionArea").hide();
+                    $("#gameOver").show();
                     this.postFinalScore();
                 }
             },
             postFinalScore: function() {
+                var _this = this;
                 var iconUrl = "/saveScore";
                 iconUrl += "?username=" + this.username;
                 iconUrl += "&score=" + this.cumulativeScore;
 
                 if (!isLocal) {
+                    _this.loading = true;
                     $.post(iconUrl).done(function() {
-                        $("#questionArea").hide();
-                        $("#gameOver").show();
+                        console.log("Score saved");
+                        _this.loading = false;
                     });
-                } else {
-                    $("#questionArea").hide();
-                    $("#gameOver").show();
                 }
             },
             userEntered: function() {
