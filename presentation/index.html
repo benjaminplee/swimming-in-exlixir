@@ -8,11 +8,9 @@
 
     <script src="https://use.fontawesome.com/6fceb4a6f5.js"></script>
 
-		<link rel="stylesheet" href="css/reveal.css">
-		<link rel="stylesheet" href="css/theme/moon.css">
-
-		<!-- Theme used for syntax highlighting of code -->
-		<link rel="stylesheet" href="lib/css/railscasts.css">
+    <link rel="stylesheet" href="css/reveal.css">
+		<link rel="stylesheet" href="css/theme/blood.css"> <!-- presentation theme -->
+    <link rel="stylesheet" href="lib/css/railscasts.css"> <!-- code highlighting -->
 
 		<!-- Printing and PDF exports -->
 		<script>
@@ -117,7 +115,7 @@ Hi Bob!
 "Bob"
             </code></pre>
             <aside class="notes" data-markdown>
-              * All about the FAST, light weigh, concurrency
+              * All about the FAST, light weight, concurrency
               * Message passing, no shared state
               * Clean productive syntax without a lot of ceremony
               * CODE
@@ -141,15 +139,16 @@ foo(X, Y) ->
   end.
             </code></pre>
             <aside class="notes" data-markdown>
-              * Erlang is ugly
+              * Erlang is ugly (4 line terminators!)
               * Tooling left a lot to be desired
-              * Worked on Mako and Sensi Cloud
+              * We have done Erlang on two projects at ASY
               * A lot was possible ... and hard
               * - Erlang on Windows = Terrible
             </aside>
           </section>
           <section>
             <h3>Who is Using It?</h3>
+            TODO notes on press releases on Elixir usage and scaling
             <ul>
               <li>Phoenix - Web Framework</li>
               <li>Discord - distributed text and video chat</li>
@@ -161,6 +160,7 @@ foo(X, Y) ->
           <section>
             <h3>Where Things Stand</h3>
             <ul>
+              <li>Elixir 1.5 release recently</li>
               <li>Active Community <small><em>Almost 5k Hex Packages</em></small></li>
               <li>~5 years old <small><em>get in on the ground floor!</em></small></li>
               <li>Lots of learning resources</li>
@@ -174,39 +174,79 @@ foo(X, Y) ->
           <section><h1>The Kiddie Pool</h1><h3>Foundations and Basics</h3></section>
 
           <section>
-            <h3></h3>
-          
+            <h1>Erlang</h1>
+            <h3>What is the big deal?!</h3>
+
+            <aside class="notes" data-markdown>
+              * Created by Swedish Telcom co Erikson in 1986
+              * Goals: high concurrency, fault tollerance, and scalability
+              * Language and a RunTime
+              * Functional and Dynamic with a Prolog inspiration
+              * Ugly and spikey
+              * Used @ ASY on 2 projects
+            </aside>
           </section>
 
           <section>
-            <h3></h3>
-          
+            <h1>Erlang</h1>
+            <h3>OK, that is a <strong>big</strong> deal...</h3>
+            <p>But how does it do it?</p>
+
+            <aside class="notes" data-markdown>
+              * Actor model + message passing + no share state
+              * Immutable data structures (single asignment, list transformation)
+              * Cheap and fast "process" creation
+              * OTP - common patterns and supervision/monitoring
+              * Fail Fast = cut out the hurt part
+              * Applications + Nodes + Releases + Hot codeswap = UPTIME
+              * "9 nines" of uptime on Erikson switch
+            </aside>
           </section>
 
-
-
-
-        </section>
-
-				<section data-background-color="#56380B">
           <section>
-            <h1>
-              Time For a Quick Detour<br />
-              <i class="fa fa-map-signs" aria-hidden="true"></i>
-            </h1>
+            <h1>Elixir</h1>
+            <h3>but, why?</h3>
+
+            <aside class="notes" data-markdown>
+              * Jose wanted the benefits but with a lower cost
+              * Ruby inspired
+              * Better tooling with more developer focus
+            </aside>
           </section>
-          <section>
-            <h2>I need your help</h2>
-            <p>Please take out your phone/phablet/tablet<br />and go to the link below</p>
-            <h2><a href="http://tinyurl.com/picktheicon">http://tinyurl.com/picktheicon</a></h2>
+
+          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+            <h2 class="fragment fade-out">The Basics</h2>
+            <h1>REPLACE THIS VIDEO</h1>
+            <aside class="notes" data-markdown>
+              * Basic Data Types - numbers, lists, tuples, strings, binaries, maps
+              * Functions - first class, always return (no methods)
+              * pattern matching (guards and data decomposition)
+              * modules (grouping functions, not just one per file)
+            </aside>
           </section>
-          <section>
-            <h2><a href="http://tinyurl.com/picktheicon">http://tinyurl.com/picktheicon</a></h2>
-            <p>Please play around on the site for 90 seconds...</p>
+
+          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+            <h2 class="fragment fade-out">MASSIVE CONCURRENCY</h1>
+            <h1>REPLACE THIS VIDEO</h1>
+            <aside class="notes" data-markdown>
+              * spawn with fun
+              * send (async) and receive (sync)
+              * gen_server from OTP
+              * Task/Agent
+              * Death - links - supervision
+            </aside>
           </section>
-          <section>
-            <h2>What did we see?</h2>
-            <p>TODO lay out WHY (concurrent without shared state or orchestration) they just did it and the kinds of web requests/flow the app suggests</p>
+
+          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+            <h2 class="fragment fade-out">Building All The Things</h1>
+            <h1>REPLACE THIS VIDEO</h1>
+            <aside class="notes" data-markdown>
+              * applications
+              * REPL - iex
+              * mix - build tool (create app, run tests, compile, dependencies)
+              * releases - distilery
+              * library - hex
+            </aside>
           </section>
         </section>
 
@@ -236,6 +276,51 @@ foo(X, Y) ->
           </section>
         </section>
 
+				<section data-background-color="#56380B">
+          <section>
+            <h1>
+              Time For a Quick Detour<br />
+              <i class="fa fa-map-signs" aria-hidden="true"></i>
+            </h1>
+          </section>
+          <section>
+            <h2>I need your help</h2>
+            <p>Please take out your phone/phablet/tablet<br />and go to the link below</p>
+            <h2><a href="http://tinyurl.com/picktheicon">http://tinyurl.com/picktheicon</a></h2>
+          </section>
+          <section>
+            <h2><a href="http://tinyurl.com/picktheicon">http://tinyurl.com/picktheicon</a></h2>
+            <p>Please play around on the site for 90 seconds...</p>
+            <aside class="notes" data-markdown>
+              * Simple web game
+              * Static files and ajax, simple web interface and backend
+              * What happens when this goes viral?
+              * Simple example but relevant to scale testing mentality
+              * How will users use the app? Do we know? What will break first?
+            </aside>
+          </section>
+          <section>
+            <h2>How could we load test this?</h2>
+            <p>TODO lay out WHY (concurrent without shared state or orchestration) they just did it and the kinds of web requests/flow the app suggests</p>
+            <aside class="notes" data-markdown>
+              * Real concurrent users don't have shared state or orchestration
+              * Simple AJAX flow and some static files
+              * Assume random number of right answers with varying time to think inbetween
+              * And submit score and load leader board
+              * Could get more complex from there
+            </aside>
+          </section>
+          <section>
+            <h2>Lets put it all together...</h2>
+            <ul>
+              <li>Create a new app with Whoppex as a dependency and HTTP library</li>
+              <li>Create a new agent</li>
+              <li>Launch and see</li>
+            </ul>
+          </section>
+          <!-- <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black"></section> -->
+        </section>
+
         <section>
 					<h1>Out of the pool!</h1>
           <p>Does everyone have <em>pruney</em> fingers?</p>
@@ -254,6 +339,7 @@ foo(X, Y) ->
 					<ul>
 						<li>Joe Depung</li>
 						<li>Adam Ritzel</li>
+						<li>Joe Barzai</li>
 						<li>Denver WWT IoT R&amp;D team</li>
             <li><a href="http://lab.hakim.se/reveal-js/">reveal.js</a> presentation framework</li>
             <li><a href="https://thenounproject.com/search/?q=swim&i=581672">Swimming</a> by IconDots from the Noun Project</li>
@@ -261,7 +347,12 @@ foo(X, Y) ->
 					</ul>
         </section>
         <section>
-					<h1>Questions?</h1>
+          <h1>Questions?</h1>
+          <aside class="notes" data-markdown>
+            * Thoughts on Elixir?
+            * Questions about Whoppex?
+            * Feedback on this Presentation?
+          </aside>
         </section>
         <section>
           <h1><em>fin</em></h1>
