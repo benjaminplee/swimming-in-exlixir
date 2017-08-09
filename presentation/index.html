@@ -94,22 +94,58 @@ iex(7)> tail
           <section>
             <h3>Noteworthy</h3>
             <pre><code class="elixir" data-trim data-noescape>
-TODO fast cheap creation of concurrent processes
+iex(1)> spawn fn -> IO.puts "I ... AM ... ALIVE!" end
+I ... AM ... ALIVE!
+#PID<0.83.0>
+iex(2)> pid = spawn fn -> IO.puts "I ... AM ... ALIVE!" end
+I ... AM ... ALIVE!
+#PID<0.85.0>
+iex(3)> Process.alive?(pid)
+false
 
-names mean something new
-
-some clever code example - e.g. pattern matching
+iex(4)> echoer = fn ->
+...(4)>   receive do
+...(4)>     name -> IO.puts "Hi #{name}!"
+...(4)>   end
+...(4)> end
+#Function<20.118419387/0 in :erl_eval.expr/5>
+iex(5)> pid2 = spawn echoer
+#PID<0.94.0>
+iex(6)> send(pid2,"Bob")
+Hi Bob!
+"Bob"
             </code></pre>
+            <aside class="notes" data-markdown>
+              * All about the FAST, light weigh, concurrency
+              * Message passing, no shared state
+              * Clean productive syntax without a lot of ceremony
+              * CODE
+              * - spawn takes a fun and runs concurrently to current process
+              * - process runs until it finishes the fun and then dies
+              * - process != OS process
+              * - processes not just for one off tasks, can send and receive msgs
+            </aside>
           </section>
           <section>
             <h3>Improving On Erlang</h3>
-            <pre><code class="elixir" data-trim data-noescape>
-TODO problems we saw on Mako and Sensi
-
-ugly Erlang code - line terminators, explicit export
-
-side by side?
+            <pre><code class="erlang" data-trim data-noescape>
+foo(0, 0) ->
+  boring;
+foo(X, Y) ->
+  Y = math:add(X, Y),
+  Z = Y rem 2,
+  case Z of
+    0 -> true;
+    1 -> undefined
+  end.
             </code></pre>
+            <aside class="notes" data-markdown>
+              * Erlang is ugly
+              * Tooling left a lot to be desired
+              * Worked on Mako and Sensi Cloud
+              * A lot was possible ... and hard
+              * - Erlang on Windows = Terrible
+            </aside>
           </section>
           <section>
             <h3>Who is Using It?</h3>
