@@ -36,15 +36,17 @@
           </p>
           <aside class="notes" data-markdown>
             * Introduce yourself
-            * Introduce the HIGH LEVEL GOAL :: Just like an introduction at a party, you should know if you want to know more about Elixir. This is basics and high level, but will show code and how real things are built.  Get a taste.
-            * Note where slide materials can be found and how feedback can be given
+            * Materials all online (github)
           </aside>
         </section>
 				<section>
           <section>
             <h1>The Plan</h1>
-            <aside class="notes">
-              Lay out the arc of the talk
+            <aside class="notes" data-markdown>
+              * Goal: everyone had a taste of Elixir - grocery store sample
+              * Both theory and real code
+              * Know enough to take the next step
+              * 3 parts
             </aside>
           </section>
           <section data-background-color="#592C23"><h1>A Quick Splash</h1><h3>Elixir at a high level</h3></section>
@@ -54,18 +56,40 @@
 				<section data-background-color="#592C23">
           <section><h1>A Quick Splash</h1><h3>Elixir at a high level</h3></section>
           <section>
-            <h3>Hello World</h3>
+            <h3>Hello Elixir</h3>
             <pre><code class="elixir" data-trim data-noescape>
-TODO do(something) | here(with) | code
+iex(1)> IO.puts "Hello Elixir"
+Hello Elixir
+:ok
 
-talk to history and motivation of Elixir (more productive high concurrency)
+iex(2)> add = fn a, b -> a + b end
+#Function<12.118419387/2 in :erl_eval.expr/5>
+iex(3)> add.(2,3)
+5
 
-Jose Valim
+iex(4)> events = [:create, {:name, 'Ben'}, 200, "dogs"]
+[:create, 100, 200, "dogs"]
 
-influenced by Ruby
+iex(5)> [head | tail] = events
+[:create, 100, 200, "dogs"]
 
-Built on Erlang - telcom, high availability, concurrency
+iex(6)> head
+:create
+
+iex(7)> tail
+[100, 200, "dogs"]
             </code></pre>
+            <aside class="notes" data-markdown>
+              * 5+ Years Old
+              * Created to be a more productive way to leverage concurrency
+              ** Ruby like syntax
+              ** Functional
+              ** Dynamic Typing
+              ** Pattern matching
+              ** Equals is equality statement more than assignment
+              * Built on the Erlang VM ; influenced by Ruby
+              * Erlang - telcom, high avail, concurrency
+            </aside>
           </section>
           <section>
             <h3>Noteworthy</h3>
@@ -78,7 +102,7 @@ some clever code example - e.g. pattern matching
             </code></pre>
           </section>
           <section>
-            <h3>Improving Erlang</h3>
+            <h3>Improving On Erlang</h3>
             <pre><code class="elixir" data-trim data-noescape>
 TODO problems we saw on Mako and Sensi
 
