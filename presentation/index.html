@@ -217,9 +217,29 @@ foo(X, Y) ->
             </aside>
           </section>
 
-          <section data-background-video="media/sample_code.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
-            <h2 class="fragment fade-out">The Basics</h2>
-            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
+          <section>
+            <h2>The Basics <small>again</small></h2>
+            <pre class="stretch"><code class="elixir" data-trim data-noescape>
+2 + 2                               # 4
+
+IO.puts "Oh, Hey!"                  # :ok, prints "Oh, Hey!"
+
+events = [404, 500, :create, "dog"] # lists, dynamic typing
+hd(events)                          # 404
+tail(events)                        # [500, :create, "dog"
+
+person = {:name, "Ben"}             # 2-tuple
+
+def fib(0) do: 0                    # recursive fibonocci
+def fib(1) do: 1                    # pattern matching
+def fib(n) do                       # multiple fun definitions
+  fib(n - 2) + fib(n - 1)
+end
+
+addTwo = fn a -> a + 2 end          # anon function, 1st class
+addrTwo(2)                          # 4
+Enum.map([1, 2, 3], addTwo)         # [3, 4, 5]
+            </code></pre>
             <aside class="notes" data-markdown>
               * Basic Data Types - numbers, lists, tuples, strings, binaries, maps
               * Functions - first class, always return (no methods)
