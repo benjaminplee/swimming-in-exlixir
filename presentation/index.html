@@ -6,8 +6,6 @@
 
 		<title>Swimming In Elixir</title>
 
-    <script src="https://use.fontawesome.com/6fceb4a6f5.js"></script>
-
     <link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/blood.css"> <!-- presentation theme -->
     <link rel="stylesheet" href="lib/css/ir-black.css"> <!-- code highlighting -->
@@ -47,12 +45,12 @@
               * 3 parts
             </aside>
           </section>
-          <section data-background-color="#592C23"><h1>A Quick Splash</h1><h3>Elixir at a high level</h3></section>
-          <section data-background-color="#7D4E57"><h1>The Kiddy Pool</h1><h3>Foundations and Basics</h3></section>
-          <section data-background-color="#53395A"><h1>Lap Swim</h1><h3>Meet Whoppex</h3></section>
+          <section data-background-color="#592C23"><h1>Splashing</h1><h3>First Looks</h3></section>
+          <section data-background-color="#7D4E57"><h1>Pool Rules</h1><h3>Foundations</h3></section>
+          <section data-background-color="#53395A"><h1>The Kiddy Pool</h1><h3>Meet Whoppex</h3></section>
         </section>
 				<section data-background-color="#592C23">
-          <section><h1>A Quick Splash</h1><h3>Elixir at a high level</h3></section>
+          <section><h1>Splashing</h1><h3>First Looks</h3></section>
           <section>
             <h2>Hello Elixir</h2>
             <pre class="stretch"><code class="elixir" data-trim data-noescape>
@@ -89,7 +87,7 @@ Enum.map([1, 2, 3], addTwo)         # [3, 4, 5]
             </aside>
           </section>
           <section>
-            <h3>Noteworthy</h3>
+            <h3>Pids for all</h3>
             <pre class="stretch"><code class="elixir" data-trim data-noescape>
 iex(1)> pid = spawn fn -> IO.puts "I ... AM ... ALIVE!" end
 I ... AM ... ALIVE!             # printed from other process
@@ -124,16 +122,16 @@ Hi Bob!                          # printed from other process
             </aside>
           </section>
           <section>
-            <h3>Improving On Erlang</h3>
+            <h3>Room to Improve</h3>
             <pre><code class="erlang" data-trim data-noescape>
 foo(0, 0) ->
-  boring;
+  boring;               % Line terminator #1
 foo(X, Y) ->
-  Y = math:add(X, Y),
+  Y = math:add(X, Y),   % Now we have 2
   Z = Y rem 2,
   case Z of
-    0 -> true;
-    1 -> undefined
+    0 -> true;          % Three for the win!
+    1 -> undefined      % FOUR? nothing is really something
   end.
             </code></pre>
             <aside class="notes" data-markdown>
@@ -151,6 +149,7 @@ foo(X, Y) ->
               <li>Discord - <span class="fragment highlight-red">1 million/min bursts msgs</span></li>
               <li>Bleacher Report - <span class="fragment highlight-green">from 150 server to 5!</span></li>
               <li>Nerves - IoT - Run Elixir on a <span class="fragment highlight-blue">RaspberryPi</span></li>
+              <li>Pinterest? Facebook?</li>
               <li>Erlang projects</span> - RabbitMQ, ejabberd, CouchDB</li>
             </ul>
             <aside class="notes" data-markdown>
@@ -173,7 +172,7 @@ foo(X, Y) ->
 
 
 				<section data-background-color="#7D4E57">
-          <section><h1>The Kiddy Pool</h1><h3>Foundations and Basics</h3></section>
+          <section><h1>Pool Rules</h1><h3>Foundations and Basics</h3></section>
 
           <section>
             <h1>Erlang</h1>
@@ -220,64 +219,69 @@ foo(X, Y) ->
           <section>
             <h2>The Basics <small>again</small></h2>
             <pre class="stretch"><code class="elixir" data-trim data-noescape>
-2 + 2                               # 4
+200 + 200                   # numbers
+:dog                        # atoms (like symbols in Ruby)
+name = "Ben"                # binary strings
+'Spruce'                    # list of ascii numbers ;)
+person = {:name, name}      # variable asigned a 2-tuple value
 
-IO.puts "Oh, Hey!"                  # :ok, prints "Oh, Hey!"
+data = [1, 2, "dog"]        # singly linked list
+[100 | data]                # [100, 1, 2, "dog"]         # cheap
+data ++ data                # [1, 2, "dog", 1, 2, "dog"] # expensive
 
-events = [404, 500, :create, "dog"] # lists, dynamic typing
-hd(events)                          # 404
-tail(events)                        # [500, :create, "dog"
+[id: 100, name: "Jane"]     # keywordlist = [{:id, 100}, {:name, "Jane"}]
 
-person = {:name, "Ben"}             # 2-tuple
+map = %{:a => 1, 2 => :b}   # a map structure
+map[:a]                     # returns 1
 
-def fib(0) do: 0                    # recursive fibonocci
-def fib(1) do: 1                    # pattern matching
-def fib(n) do                       # multiple fun definitions
-  fib(n - 2) + fib(n - 1)
-end
-
-addTwo = fn a -> a + 2 end          # anon function, 1st class
-addrTwo(2)                          # 4
-Enum.map([1, 2, 3], addTwo)         # [3, 4, 5]
+def print([]) do: :ok       # pattern matching on function
+def print([head | tail) do  # pattern matching on value decomposition
+  IO.puts head
+  print(tail)
+end                         # tail call optimized recursion
             </code></pre>
             <aside class="notes" data-markdown>
               * Basic Data Types - numbers, lists, tuples, strings, binaries, maps
               * Functions - first class, always return (no methods)
               * pattern matching (guards and data decomposition)
-              * modules (grouping functions, not just one per file)
             </aside>
           </section>
 
-          <section data-background-video="media/sample_code.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
-            <h2 class="fragment fade-out">MASSIVE CONCURRENCY</h1>
-            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
-            <h1>REPLACE THIS VIDEO</h1>
+          <section>
+            <h2>gen_server</h2>
+            <pre class="stretch"><code class="elixir" data-trim data-noescape>
+defmodule GreeterServer do
+  require Logger
+  use GenServer
+
+  def start_link(name) do  # API METHOD, CALLED BY SUPERVISION TREE
+    GenServer.start_link(__MODULE__, name, [])
+  end
+
+  def init(my_name) do  # initialize and return initial state
+    log("starting")
+    {:ok, my_name}
+  end
+
+  # async, use handle_call for simulated synchronous messages
+  def handle_cast(your_name, my_name) do
+    log("Hi #{your_name}, my name is #{my_name}")
+    {:noreply, my_name}
+  end
+end
+            </code></pre>
             <aside class="notes" data-markdown>
-              * spawn with fun
-              * send (async) and receive (sync)
-              * gen_server from OTP
-              * Task/Agent
-              * Death - links - supervision
+              * Callbacks (only ones you need)
+              * async and sync call backs
+              * hot code swap (upgrade)
             </aside>
           </section>
 
-          <section data-background-video="media/sample_code.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
-            <h2 class="fragment fade-out">Building All The Things</h1>
-            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
-            <h1>REPLACE THIS VIDEO</h1>
-            <aside class="notes" data-markdown>
-              * applications
-              * REPL - iex
-              * mix - build tool (create app, run tests, compile, dependencies)
-              * releases - distilery
-              * library - hex
-            </aside>
-          </section>
         </section>
 
 
 				<section data-background-color="#53395A">
-          <section><h1>Lap Swim</h1><h3>Meet Whoppex</h3></section>
+          <section><h1>Kiddy Pool</h1><h3>Meet Whoppex</h3></section>
 
           <section>
             <h1>The Problem</h1>
@@ -332,7 +336,6 @@ Enum.map([1, 2, 3], addTwo)         # [3, 4, 5]
           <section>
             <h1>
               Time For a Quick Detour<br />
-              <i class="fa fa-map-signs" aria-hidden="true"></i>
             </h1>
           </section>
           <section>
@@ -342,7 +345,7 @@ Enum.map([1, 2, 3], addTwo)         # [3, 4, 5]
           </section>
           <section>
             <h2><a href="http://tinyurl.com/picktheicon">http://tinyurl.com/picktheicon</a></h2>
-            <p>Please play around on the site for 90 seconds...</p>
+            <p>Please play around on the site for 60 seconds...</p>
             <aside class="notes" data-markdown>
               * Simple web game
               * Static files and ajax, simple web interface and backend
@@ -361,9 +364,8 @@ Enum.map([1, 2, 3], addTwo)         # [3, 4, 5]
               * Could get more complex from there
             </aside>
           </section>
-          <section data-background-video="media/sample_code.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+          <section data-background-video="media/picktheicon_agent.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
             <h2 class="fragment fade-out">Lets put Whoppex to work!</h2>
-            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
           </section>
         </section>
 
