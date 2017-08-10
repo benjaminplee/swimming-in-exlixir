@@ -53,30 +53,29 @@
         </section>
 				<section data-background-color="#592C23">
           <section><h1>A Quick Splash</h1><h3>Elixir at a high level</h3></section>
-          <!-- <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black"></section> -->
           <section>
-            <h3>Hello Elixir</h3>
+            <h2>Hello Elixir</h2>
             <pre class="stretch"><code class="elixir" data-trim data-noescape>
-iex(1)> IO.puts "Hello Elixir"
-Hello Elixir
-:ok
+iex(1)> spawn fn -> IO.puts "I ... AM ... ALIVE!" end
+I ... AM ... ALIVE!
+#PID<0.83.0>
+iex(2)> pid = spawn fn -> IO.puts "I ... AM ... ALIVE!" end
+I ... AM ... ALIVE!
+#PID<0.85.0>
+iex(3)> Process.alive?(pid)
+false
 
-iex(2)> add = fn a, b -> a + b end
-#Function<12.118419387/2 in :erl_eval.expr/5>
-iex(3)> add.(2,3)
-5
-
-iex(4)> events = [:create, {:name, 'Ben'}, 200, "dogs"]
-[:create, 100, 200, "dogs"]
-
-iex(5)> [head | tail] = events
-[:create, 100, 200, "dogs"]
-
-iex(6)> head
-:create
-
-iex(7)> tail
-[100, 200, "dogs"]
+iex(4)> echoer = fn ->
+...(4)>   receive do
+...(4)>     name -> IO.puts "Hi #{name}!"
+...(4)>   end
+...(4)> end
+#Function<20.118419387/0 in :erl_eval.expr/5>
+iex(5)> pid2 = spawn echoer
+#PID<0.94.0>
+iex(6)> send(pid2,"Bob")
+Hi Bob!
+"Bob"
             </code></pre>
             <aside class="notes" data-markdown>
               * 5+ Years Old
@@ -151,12 +150,14 @@ foo(X, Y) ->
             <ul>
               <li><span class="fragment highlight-blue">Phoenix</span> - Web Framework</li>
               <li><span class="fragment highlight-red">Discord</span> - distributed text and video chat</li>
+              <li><span class="fragment highlight-red">Bleacher Report</span> - sports news</li>
               <li><span class="fragment highlight-green">Nerves</span> - IoT - Run Elixir on a RaspberryPi</li>
               <li><span class="fragment highlight-blue">Erlang projects</span> - RabbitMQ, ejabberd, CouchDB</li>
             </ul>
             <aside class="notes" data-markdown>
               * 2 million websocket connections to Phoenix
               * Discord claims to handle more than 1mil/min bursts and 5mil users
+              * Bleacher Report 150 servers to 5
             </aside>
           </section>
           <section>
@@ -217,7 +218,7 @@ foo(X, Y) ->
             </aside>
           </section>
 
-          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+          <section data-background-video="media/sample_code.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
             <h2 class="fragment fade-out">The Basics</h2>
             <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
             <aside class="notes" data-markdown>
@@ -228,7 +229,7 @@ foo(X, Y) ->
             </aside>
           </section>
 
-          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+          <section data-background-video="media/sample_code.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
             <h2 class="fragment fade-out">MASSIVE CONCURRENCY</h1>
             <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
             <h1>REPLACE THIS VIDEO</h1>
@@ -241,7 +242,7 @@ foo(X, Y) ->
             </aside>
           </section>
 
-          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+          <section data-background-video="media/sample_code.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
             <h2 class="fragment fade-out">Building All The Things</h1>
             <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
             <h1>REPLACE THIS VIDEO</h1>
@@ -266,26 +267,44 @@ foo(X, Y) ->
               * Scale misses and wins on many projects
               * IoT R&amp;D team - Truck Edge demo TO THE CLOUD!
               * Want multi protocol, dev/code first, easy to understand plans
-              * Other tools left me wanting
-              * * JMeter
-              * * TSung
-              * * Gatling
+              * Other tools left me wanting (JMeter, Tsung, Gatling)
               * Built home grown and used for success on past proj
-              * Disagree?  Tell me after!
-            </aside>
-          </section>
-
-          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
-            <h1 class="fragment fade-out">Solution?</h1>
-            <h3 class="fragment fade-out"><em><strong>Whoppex</strong></em></h3>
-            <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
-            <aside class="notes" data-markdown>
-              * Success on past proj with home grown and Erlang
-              * Rewrite core in Elixir
               * Users should only need to contribute their "agent" definition
               * Agents have a plan and are managed by the library
               * Common convience methods (pause, loop, etc)
               * Published hex package
+            </aside>
+          </section>
+
+          <section data-background-video="media/sample_whopex_overview.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+            <h2 class="fragment fade-out">A Sample App</h2>
+            <aside class="notes" data-markdown>
+              * Walk through Sample App
+              * OTP Application, config/dependencies, supervision
+              * Logging Agent - plan basics, atoms -> funs
+              * HTTP Agent - some state, more advanced plan
+              * MQTT - protocols, more state, init
+            </aside>
+          </section>
+
+          <section data-background-video="media/sample_whopex_run.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+            <h2 class="fragment fade-out">See It In Action</h2>
+            <aside class="notes" data-markdown>
+              * IEX with mix loads your app into running node
+              * Launcher is custom code to give nicer API
+              * See lots of logs, simple
+            </aside>
+          </section>
+
+          <section data-background-video="media/whoppex_overview.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+            <h2 class="fragment fade-out">Whoppex Overview</h2>
+            <aside class="notes" data-markdown>
+              * Configuration, distilery for release configuration
+              * Supervision tree, two kinds of supervision
+              * Agent - meta programming, what must be implemented in callback moduleA
+              * Workers - gen_server backing agent and running your plan
+              * Sample simple tests - not an area I have invested in heavily yet
+              * OOPs!  tests are not passing
             </aside>
           </section>
         </section>
@@ -323,16 +342,8 @@ foo(X, Y) ->
               * Could get more complex from there
             </aside>
           </section>
-          <section>
-            <h2>Lets put it all together...</h2>
-            <ul>
-              <li>Create a new app with Whoppex as a dependency and HTTP library</li>
-              <li>Create a new agent</li>
-              <li>Launch and see</li>
-            </ul>
-          </section>
-          <section data-background-video="media/sample_code.mov" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
-            <h2 class="fragment fade-out">Walkthrough</h2>
+          <section data-background-video="media/sample_code.mp4" data-background-video-loop data-background-video-muted data-background-size="contain" data-background-color="black">
+            <h2 class="fragment fade-out">Lets put Whoppex to work!</h2>
             <h1 style="color:red">TO DO : REPLACE THIS VIDEO</h1>
           </section>
         </section>
