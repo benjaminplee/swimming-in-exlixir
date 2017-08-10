@@ -8,6 +8,11 @@
       "firebase.json",
       "**/.*",
       "**/node_modules/**"
+    ],
+    // Add the following rewrites section *within* "hosting"
+    "rewrites": [ {"source": "/saveScore", "function": "saveScore"},
+      {"source": "/getScores", "function": "getScores"},
+      {"source": "/getRandIcons", "function": "getRandIcons"}
     ]
   }
 }
