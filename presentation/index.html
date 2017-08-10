@@ -56,26 +56,25 @@
           <section>
             <h2>Hello Elixir</h2>
             <pre class="stretch"><code class="elixir" data-trim data-noescape>
-iex(1)> spawn fn -> IO.puts "I ... AM ... ALIVE!" end
-I ... AM ... ALIVE!
-#PID<0.83.0>
-iex(2)> pid = spawn fn -> IO.puts "I ... AM ... ALIVE!" end
-I ... AM ... ALIVE!
-#PID<0.85.0>
-iex(3)> Process.alive?(pid)
-false
+2 + 2                               # 4
 
-iex(4)> echoer = fn ->
-...(4)>   receive do
-...(4)>     name -> IO.puts "Hi #{name}!"
-...(4)>   end
-...(4)> end
-#Function<20.118419387/0 in :erl_eval.expr/5>
-iex(5)> pid2 = spawn echoer
-#PID<0.94.0>
-iex(6)> send(pid2,"Bob")
-Hi Bob!
-"Bob"
+IO.puts "Oh, Hey!"                  # :ok, prints "Oh, Hey!"
+
+events = [404, 500, :create, "dog"] # lists, dynamic typing
+hd(events)                          # 404
+tail(events)                        # [500, :create, "dog"
+
+person = {:name, "Ben"}             # 2-tuple
+
+def fib(0) do: 0                    # recursive fibonocci
+def fib(1) do: 1                    # pattern matching
+def fib(n) do                       # multiple fun definitions
+  fib(n - 2) + fib(n - 1)
+end
+
+addTwo = fn a -> a + 2 end          # anon function, 1st class
+addrTwo(2)                          # 4
+Enum.map([1, 2, 3], addTwo)         # [3, 4, 5]
             </code></pre>
             <aside class="notes" data-markdown>
               * 5+ Years Old
@@ -92,26 +91,26 @@ Hi Bob!
           <section>
             <h3>Noteworthy</h3>
             <pre class="stretch"><code class="elixir" data-trim data-noescape>
-iex(1)> spawn fn -> IO.puts "I ... AM ... ALIVE!" end
-I ... AM ... ALIVE!
-#PID<0.83.0>
-iex(2)> pid = spawn fn -> IO.puts "I ... AM ... ALIVE!" end
-I ... AM ... ALIVE!
-#PID<0.85.0>
-iex(3)> Process.alive?(pid)
-false
+iex(1)> pid = spawn fn -> IO.puts "I ... AM ... ALIVE!" end
+I ... AM ... ALIVE!             # printed from other process
+#PID<0.85.0>                    # process identifier
+iex(2)> Process.alive?(pid)
+false                           # sadly, our process is dead :(
 
-iex(4)> echoer = fn ->
-...(4)>   receive do
-...(4)>     name -> IO.puts "Hi #{name}!"
-...(4)>   end
-...(4)> end
-#Function<20.118419387/0 in :erl_eval.expr/5>
-iex(5)> pid2 = spawn echoer
+iex(3)> echoer = fn ->           # define fun to receive msg
+...(3)>   receive do             # blocking receive
+...(3)>     name -> IO.puts "Hi #{name}!"
+...(3)>   end
+...(3)> end
+
+iex(4)> pid2 = spawn echoer      # create process, return pid
 #PID<0.94.0>
-iex(6)> send(pid2,"Bob")
-Hi Bob!
-"Bob"
+iex(5)> Process.alive?(pid2)     # alive, waiting for our msg
+true
+
+iex(6)> send(pid2,"Bob")         # send async msg to other process
+Hi Bob!                          # printed from other process
+"Bob"                            # returned from send function
             </code></pre>
             <aside class="notes" data-markdown>
               * All about the FAST, light weight, concurrency
@@ -148,11 +147,11 @@ foo(X, Y) ->
           <section>
             <h3>Who is Using It?</h3>
             <ul>
-              <li><span class="fragment highlight-blue">Phoenix</span> - Web Framework</li>
-              <li><span class="fragment highlight-red">Discord</span> - distributed text and video chat</li>
-              <li><span class="fragment highlight-red">Bleacher Report</span> - sports news</li>
-              <li><span class="fragment highlight-green">Nerves</span> - IoT - Run Elixir on a RaspberryPi</li>
-              <li><span class="fragment highlight-blue">Erlang projects</span> - RabbitMQ, ejabberd, CouchDB</li>
+              <li>Phoenix - <span class="fragment highlight-blue">2 million websockets</span></li>
+              <li>Discord - <span class="fragment highlight-red">1 million/min bursts msgs</span></li>
+              <li>Bleacher Report - <span class="fragment highlight-green">from 150 server to 5!</span></li>
+              <li>Nerves - IoT - Run Elixir on a <span class="fragment highlight-blue">RaspberryPi</span></li>
+              <li>Erlang projects</span> - RabbitMQ, ejabberd, CouchDB</li>
             </ul>
             <aside class="notes" data-markdown>
               * 2 million websocket connections to Phoenix
