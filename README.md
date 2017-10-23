@@ -8,6 +8,10 @@ This repo is also accessible from:
 * https://goo.gl/rkFg3P
 
 ## presentation
+
+You can view the presentation in your browser now on GitHub Pages [/presentation/index.html](/presentation/index.html).
+
+
 Created for AIC 2017 Internal Conference by [WWT Asynchrony
 Labs](http://www.asynchrony.com/).
 
