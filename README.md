@@ -9,7 +9,7 @@ This repo is also accessible from:
 
 ## presentation
 
-**You can view the presentation in your browser now on GitHub Pages [/presentation/index.html](/presentation/index.html).**
+**You can view the presentation in your browser now on GitHub Pages [/presentation/index.html](https://benjaminplee.github.io/swimming-in-exlixir/presentation/index.html).**
 
 Created for AIC 2017 Internal Conference by [WWT Asynchrony
 Labs](http://www.asynchrony.com/).
