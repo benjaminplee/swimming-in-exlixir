@@ -3,14 +3,13 @@ Elixir basics presentation materials from Asynchrony-Internal-Conference
 (AIC) 2017
 
 This repo is also accessible from:
-* https://tinyurl.com/AIC2017Elixir
-* https://tinyurl.com/swimminginelixir
-* https://goo.gl/rkFg3P
+* [https://tinyurl.com/AIC2017Elixir](https://tinyurl.com/AIC2017Elixir)
+* [https://tinyurl.com/swimminginelixir](https://tinyurl.com/swimminginelixir)
+* [https://goo.gl/rkFg3P](https://goo.gl/rkFg3P)
 
 ## presentation
 
-You can view the presentation in your browser now on GitHub Pages [/presentation/index.html](/presentation/index.html).
-
+**You can view the presentation in your browser now on GitHub Pages [/presentation/index.html](/presentation/index.html).**
 
 Created for AIC 2017 Internal Conference by [WWT Asynchrony
 Labs](http://www.asynchrony.com/).
